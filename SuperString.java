@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 
 public class SuperString implements Countable, Comparable<SuperString> {
 	private String[] tokens;

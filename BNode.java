@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 public class BNode<T> {
 	private T element;
 	private BNode<T> left;

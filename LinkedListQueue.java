@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 
 public class LinkedListQueue<T> implements Queue<T> {
 	private Node<T> front;

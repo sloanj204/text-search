@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 import java.util.Comparator;
 
 public class SuperStringComparator implements Comparator<SuperString> {

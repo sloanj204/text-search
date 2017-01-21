@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 import java.util.Iterator;
 
 public interface OrderedList<T extends Comparable> extends Iterable<T> {

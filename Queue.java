@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 public interface Queue<T> {
 	public void add(T element);
 

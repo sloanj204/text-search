@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 public class Node<T> {
 	private T element;
 	private Node<T> next;

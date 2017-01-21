@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 public interface Countable<T> {
 	public void increment();
 

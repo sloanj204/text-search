@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 
 import java.awt.*;
 import javax.swing.*;
@@ -10,54 +10,54 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 
 @SuppressWarnings("serial")
-public class superSearch extends JPanel implements ActionListener {
+public class textSearch extends JPanel implements ActionListener {
 	private int width, height;
-	private JButton open0, open1;
+	private JButton buttonOne, buttonTwo;
 	private JRadioButton alpha;
-	private TextArea textarea0, textarea1;
-	private JLabel label0, label1, label2, label3;
+	private TextArea firstTextBox, resultBoxTwo;
+	private JLabel firstFileLabel, secondFileLabel, nLabel, scoreLabel;
 	private SuperString[] array0, array1;
 	private JTextField nField;
 	private String n;
 	private JButton match;
 
-	public superSearch() {
+	public textSearch() {
 		JPanel upperPanel = new JPanel();
 		JPanel subpanel = new JPanel();
 		width = 1000;
 		height = 600;
 		nField = new JTextField("2", 3);
 		alpha = new JRadioButton("Alphabetical");
-		open0 = new JButton("Open FIle");
-		label0 = new JLabel("No file selected");
-		open1 = new JButton("Open File");
-		label1 = new JLabel("No file selected");
-		label2 = new JLabel("Size of N ");
-		label3 = new JLabel("Match Score ");
+		buttonOne = new JButton("Open File");
+		firstFileLabel = new JLabel("No file selected");
+		buttonTwo = new JButton("Open File");
+		secondFileLabel = new JLabel("No file selected");
+		nLabel = new JLabel("Size of N ");
+		scoreLabel = new JLabel("Match Score ");
 		match = new JButton("Compute match");
-		textarea0 = new TextArea("", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
-		textarea1 = new TextArea("", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
+		firstTextBox = new TextArea("", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
+		resultBoxTwo = new TextArea("", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
 
 		setLayout(new BorderLayout());
 		subpanel.setLayout(new BoxLayout(subpanel, BoxLayout.X_AXIS));
-		textarea0.setPreferredSize(new Dimension(width / 2, height * 3 / 5));
-		textarea1.setPreferredSize(new Dimension(width / 2, height * 3 / 5));
+		firstTextBox.setPreferredSize(new Dimension(width / 2, height * 3 / 5));
+		resultBoxTwo.setPreferredSize(new Dimension(width / 2, height * 3 / 5));
 		setPreferredSize(new Dimension(width, height));
 
-		open0.addActionListener(this);
-		open1.addActionListener(this);
+		buttonOne.addActionListener(this);
+		buttonTwo.addActionListener(this);
 		match.addActionListener(this);
 		upperPanel.add(alpha);
-		upperPanel.add(open0);
-		upperPanel.add(label0);
-		upperPanel.add(open1);
-		upperPanel.add(label1);
+		upperPanel.add(buttonOne);
+		upperPanel.add(firstFileLabel);
+		upperPanel.add(buttonTwo);
+		upperPanel.add(secondFileLabel);
 		upperPanel.add(nField);
-		upperPanel.add(label2);
+		upperPanel.add(nLabel);
 		upperPanel.add(match);
-		upperPanel.add(label3);
-		subpanel.add(textarea0);
-		subpanel.add(textarea1);
+		upperPanel.add(scoreLabel);
+		subpanel.add(firstTextBox);
+		subpanel.add(resultBoxTwo);
 		add(subpanel, BorderLayout.CENTER);
 		add(upperPanel, BorderLayout.NORTH);
 	}
@@ -67,7 +67,7 @@ public class superSearch extends JPanel implements ActionListener {
 			NumberFormat formatter = new DecimalFormat("#.###");
 			double result = (MatchTools.match(array0, array1));
 			String formattedResult = formatter.format(result);
-			label3.setText(formattedResult + " ");
+			scoreLabel.setText(formattedResult + " ");
 			return;
 		}
 
@@ -82,24 +82,24 @@ public class superSearch extends JPanel implements ActionListener {
 
 		if (!alpha.isSelected())
 			Arrays.sort(array, new SuperStringComparator());
-		if (event.getSource() == open0) {
+		if (event.getSource() == buttonOne) {
 			array0 = array;
-			label0.setText(filename);
-			textarea0.setText("");
+			firstFileLabel.setText(filename);
+			firstTextBox.setText("");
 			StringBuilder sb = new StringBuilder();
 			for (SuperString token : array0)
 				sb.append(token + "\n");
-			textarea0.setText(sb.toString());
+			firstTextBox.setText(sb.toString());
 		}
 
-		if (event.getSource() == open1) {
+		if (event.getSource() == buttonTwo) {
 			array1 = array;
-			label1.setText(filename);
-			textarea1.setText("");
+			secondFileLabel.setText(filename);
+			resultBoxTwo.setText("");
 			StringBuilder sb = new StringBuilder();
 			for (SuperString token : array1)
 				sb.append(token + "\n");
-			textarea1.setText(sb.toString());
+			resultBoxTwo.setText(sb.toString());
 		}
 
 	}
@@ -146,9 +146,9 @@ public class superSearch extends JPanel implements ActionListener {
 	}
 
 	public static void main(String[] arg) {
-		JFrame frame = new JFrame("superSearch");
+		JFrame frame = new JFrame("textSearch");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(new superSearch());
+		frame.add(new textSearch());
 		frame.pack();
 		frame.setVisible(true);
 	}

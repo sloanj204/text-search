@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 import java.util.Iterator;
 
 public interface CountList<T extends Comparable & Countable> extends Iterable<T> {

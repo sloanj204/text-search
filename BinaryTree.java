@@ -1,4 +1,4 @@
-package superSearch;
+package textSearch;
 
 import java.util.List;
 import java.util.ArrayList;
