@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class textSearch extends JPanel implements ActionListener {
 	private int width, height;
 	private JButton buttonOne, buttonTwo;
-	private JRadioButton alpha;
+	private JRadioButton alphButton;
 	private TextArea firstTextBox, resultBoxTwo;
 	private JLabel firstFileLabel, secondFileLabel, nLabel, scoreLabel;
 	private SuperString[] array0, array1;
@@ -27,7 +27,7 @@ public class textSearch extends JPanel implements ActionListener {
 		width = 1000;
 		height = 600;
 		nField = new JTextField("2", 3);
-		alpha = new JRadioButton("Alphabetical");
+		alphButton = new JRadioButton("alphabetical");
 		buttonOne = new JButton("Open File");
 		firstFileLabel = new JLabel("No file selected");
 		buttonTwo = new JButton("Open File");
@@ -37,7 +37,6 @@ public class textSearch extends JPanel implements ActionListener {
 		match = new JButton("Compute match");
 		firstTextBox = new TextArea("", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
 		resultBoxTwo = new TextArea("", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY);
-
 		setLayout(new BorderLayout());
 		subpanel.setLayout(new BoxLayout(subpanel, BoxLayout.X_AXIS));
 		firstTextBox.setPreferredSize(new Dimension(width / 2, height * 3 / 5));
@@ -47,7 +46,7 @@ public class textSearch extends JPanel implements ActionListener {
 		buttonOne.addActionListener(this);
 		buttonTwo.addActionListener(this);
 		match.addActionListener(this);
-		upperPanel.add(alpha);
+		upperPanel.add(alphButton);
 		upperPanel.add(buttonOne);
 		upperPanel.add(firstFileLabel);
 		upperPanel.add(buttonTwo);
@@ -64,7 +63,7 @@ public class textSearch extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == match) {
-			NumberFormat formatter = new DecimalFormat("#.###");
+			NumberFormat formatter = new DecimalFormat("#.##");
 			double result = (MatchTools.match(array0, array1));
 			String formattedResult = formatter.format(result);
 			scoreLabel.setText(formattedResult + " ");
@@ -80,7 +79,7 @@ public class textSearch extends JPanel implements ActionListener {
 
 		SuperString[] array = loadfile(file);
 
-		if (!alpha.isSelected())
+		if (!alphButton.isSelected())
 			Arrays.sort(array, new SuperStringComparator());
 		if (event.getSource() == buttonOne) {
 			array0 = array;
